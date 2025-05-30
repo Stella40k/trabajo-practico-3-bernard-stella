@@ -1,1 +1,0 @@
-fetch("https://web.dragonball-api.com/");
