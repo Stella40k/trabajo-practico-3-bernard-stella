@@ -13,9 +13,10 @@
 <body>
   <div id="padre">
     <header>
+      <button id="btn_busqueda" class="btn btn-primary mt-4">Traeme datos</button>
       <h1>API DragonBall</h1>
       <p>¡Conoce mas de cada personaje!</p>
-      <nav>
+      <nav>it
         <nav class="navbar bg-body-tertiary">
           <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -23,44 +24,30 @@
             </a>
           </div>
         </nav>
-        <div class="container py-4">
-          <h1 class="text-center mb-4">Personajes de Dragon Ball</h1>
-          <div class="row justify-content-center mb-4">
-            <div class="col-md-6">
-              <div class="input-group">
-                <input type="text" id="input-busqueda" class="form-control"
-                  placeholder="Introduce el nombre del personaje...">
-                <button id="btn-buscar" type="button" class="btn btn-primary">Buscar</button>
-              </div>
-              <div id="mensaje-error" class="text-danger mt-2"></div>
-            </div>
-          </div>
-          <div id="contenedor-data" class="row g-4 justify-content-center">
-          </div>
     </header>
 
-    <button id="btn-traer-datos" class="btn btn-success">Traer Datos </button>
+     <button id="btn-traer-datos" class="btn btn-success">Traer Datos </button>
 
-    <!-- contenedor padre de las cartas  -->
-    <div class="container text-center">
-      <!-- cartas hijas -->
-      <div class="col-3 pb-2 d-flex justify-content-center">
-        <div class="card">
-          <img class="card-img-top" src="https://dragonball-api.com/characters/goku_normal.webp" />
-          <div class="card-body">
+       <!-- contenedor padre de las cartas  -->
+      <div class="container text-center">
+        <!-- cartas hijas -->
+        <div class="col-3 pb-2 d-flex justify-content-center">
+          <div class="card">
+            <img class="card-img-top" src="https://dragonball-api.com/characters/goku_normal.webp" />
+            <div class="card-body">
             <h5 class="card-title">Goku</h5>
-            <p class="card-text">Saiyan - Male</p>
+             <p class="card-text">Saiyan - Male</p>
           </div>
         </div>
       </div>
-      </main>
-    </div>
+    </main>
+  </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-      crossorigin="anonymous"></script>
-    <script src="/assets/js/script.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
+  <script src="/assets/js/script.js"> </script>
 </body>
 
 </html>

@@ -1,23 +1,22 @@
 const API_URL_BASE = "https://dragonball-api.com/api/characters";
-const botonAccion = document.getElementById("btn-buscar");
-const campoTextoBusqueda = document.getElementById("input-busqueda");
-const contenedorResultados = document.getElementById("contenedor-data");
-
-const modalInfoElemento = document.getElementById('modal-detalles');
-const instanciaModal = new bootstrap.Modal(modalInfoElemento);
-const tituloModal = document.getElementById('modal-titulo');
-const cuerpoModal = document.getElementById('modal-cuerpo');
+const botonTraerTodos = document.getElementById("btn_busqueda"); 
+const campoTextoBusqueda = document.getElementById("searchInput"); 
+const botonBusqueda = document.getElementById("searchButton"); 
+const contenedorResultados = document.getElementById("characterCardsContainer");
+const modalInfoElemento = document.getElementById('modalDetallesPersonaje'); 
+const instanciaModal = new bootstrap.Modal(modalInfoElemento); 
+const tituloModal = document.getElementById('modalTitulo'); 
+const cuerpoModal = document.getElementById('modalCuerpo'); 
 
 const indicadorCarga = document.getElementById('spinner');
-const mensajeAlertaBusqueda = document.getElementById('mensaje-error');
+const mensajeAlertaBusqueda = document.getElementById('messageContainer');
 
 let coleccionCompletaPersonajes = [];
 
 const obtenerRegistrosAPI = async () => {
     mensajeAlertaBusqueda.textContent = '';
-    contenedorResultados.innerHTML = '';
-
-    indicadorCarga.classList.remove('d-none');
+    contenedorResultados.innerHTML = ''; 
+    indicadorCarga.classList.remove('d-none'); 
 
     try {
         const respuestaHTTP = await fetch(`${API_URL_BASE}?limit=1000`);
@@ -32,10 +31,8 @@ const obtenerRegistrosAPI = async () => {
             throw new Error('La API no devolvió registros válidos.');
         }
 
-        coleccionCompletaPersonajes = datosJSON.items;
-
-        desplegarPersonajes(coleccionCompletaPersonajes);
-
+        coleccionCompletaPersonajes = datosJSON.items; 
+        desplegarPersonajes(coleccionCompletaPersonajes); 
     } catch (error) {
         console.error('Fallo al cargar registros:', error);
         contenedorResultados.innerHTML = `
@@ -47,12 +44,12 @@ const obtenerRegistrosAPI = async () => {
             </div>
         `;
     } finally {
-        indicadorCarga.classList.add('d-none');
+        indicadorCarga.classList.add('d-none'); 
     }
 };
 
-const desplegarPersonajes = (listaPersonajes) => {
-    contenedorResultados.innerHTML = "";
+const desplegarPersonajes = (listaPersonajes) => 
+    contenedorResultados.innerHTML = ""; /
 
     if (listaPersonajes.length === 0) {
         contenedorResultados.innerHTML = `
@@ -63,55 +60,57 @@ const desplegarPersonajes = (listaPersonajes) => {
         return;
     }
 
-    const fragmentoDOM = document.createDocumentFragment();
+    const fragmentoDOM = document.createDocumentFragment(); 
 
     listaPersonajes.forEach(registro => {
         const columnaElemento = document.createElement("div");
-        columnaElemento.className = "col-sm-6 col-md-4 col-lg-3 mb-4";
+   
+        columnaElemento.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4"; 
 
         columnaElemento.innerHTML = `
-    <div class="card h-100 shadow-sm border-0 cursor-pointer" data-id="${registro.id}">
-        <img src="${registro.image || 'https://via.placeholder.com/300x400?text=No+Image+Available'}"
-            class="card-img-top" alt="Imagen de ${registro.name || 'Personaje'}"
-            onerror="this.onerror=null;this.src='https://via.placeholder.com/300x400?text=Error+Loading+Image';">
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title text-primary">${registro.name || 'Nombre Desconocido'}</h5>
-            <p class="card-text flex-grow-1">
-                <strong>Raza:</strong> ${registro.race || "Desconocida"}<br>
-                <strong>Género:</strong> ${registro.gender || "Desconocido"}
-            </p>
-        </div>
-    </div>
-`;
+            <div class="card h-100 shadow-sm border-0 cursor-pointer" data-id="${registro.id}">
+                <img src="${registro.image || 'https://via.placeholder.com/300x400?text=Imagen+No+Disponible'}"
+                    class="card-img-top" alt="Imagen de ${registro.name || 'Personaje'}"
+                    onerror="this.onerror=null;this.src='https://via.placeholder.com/300x400?text=Error+Cargando+Imagen';">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-primary">${registro.name || 'Nombre Desconocido'}</h5>
+                    <p class="card-text flex-grow-1">
+                        <strong>Raza:</strong> ${registro.race || "Desconocida"}<br>
+                        <strong>Género:</strong> ${registro.gender || "Desconocido"}
+                    </p>
+                </div>
+            </div>
+        `;
         fragmentoDOM.appendChild(columnaElemento);
     });
 
     contenedorResultados.appendChild(fragmentoDOM);
 
-    configurarEventosTarjeta();
-};
+    configurarEventosTarjeta(); 
 
 const buscarRegistros = () => {
     const textoBusqueda = campoTextoBusqueda.value.trim().toLowerCase();
 
     if (!textoBusqueda) {
         mensajeAlertaBusqueda.textContent = 'Por favor, ingresa un nombre para buscar.';
-        desplegarPersonajes(coleccionCompletaPersonajes);
+        desplegarPersonajes(coleccionCompletaPersonajes); 
         return;
     }
 
+  
     const registrosFiltrados = coleccionCompletaPersonajes.filter(registro =>
         registro.name.toLowerCase().includes(textoBusqueda)
     );
 
-    desplegarPersonajes(registrosFiltrados);
+    desplegarPersonajes(registrosFiltrados); 
 
     if (registrosFiltrados.length === 0) {
         mensajeAlertaBusqueda.textContent = `No se encontraron resultados para "${campoTextoBusqueda.value.trim()}".`;
     } else {
-        mensajeAlertaBusqueda.textContent = '';
+        mensajeAlertaBusqueda.textContent = ''; 
     }
 };
+
 
 const mostrarDetallePersonaje = async (idRegistro) => {
     tituloModal.textContent = 'Obteniendo información...';
@@ -123,10 +122,10 @@ const mostrarDetallePersonaje = async (idRegistro) => {
             <p class="mt-2">Cargando detalles del personaje...</p>
         </div>
     `;
-    instanciaModal.show();
+    instanciaModal.show(); 
 
     try {
-        const respuestaDetalle = await fetch(`${API_URL_BASE}/${idRegistro}`);
+        const respuestaDetalle = await fetch(`${API_URL_BASE}/${idRegistro}`); 
 
         if (!respuestaDetalle.ok) {
             throw new Error(`Error al obtener detalles: ${respuestaDetalle.status}`);
@@ -138,10 +137,10 @@ const mostrarDetallePersonaje = async (idRegistro) => {
         cuerpoModal.innerHTML = `
             <div class="row align-items-center">
                 <div class="col-md-5 text-center mb-3 mb-md-0">
-                    <img src="${registroDetalle.image || 'https://via.placeholder.com/400x400?text=No+Image+Available'}"
+                    <img src="${registroDetalle.image || 'https://via.placeholder.com/400x400?text=Imagen+No+Disponible'}"
                         class="img-fluid rounded-3 shadow-sm"
                         alt="Imagen de ${registroDetalle.name || 'Personaje'}"
-                        onerror="this.onerror=null;this.src='https://via.placeholder.com/400x400?text=Error+Loading+Image';">
+                        onerror="this.onerror=null;this.src='https://via.placeholder.com/400x400?text=Error+Cargando+Imagen';">
                 </div>
                 <div class="col-md-7 text-start">
                     <p class="mb-2"><strong>ID:</strong> ${registroDetalle.id || 'N/A'}</p>
@@ -169,19 +168,24 @@ const mostrarDetallePersonaje = async (idRegistro) => {
     }
 };
 
+
 const configurarEventosTarjeta = () => {
     document.querySelectorAll('.card[data-id]').forEach(tarjeta => {
         tarjeta.addEventListener('click', (evento) => {
-            const idPersonaje = evento.currentTarget.dataset.id;
-            mostrarDetallePersonaje(idPersonaje);
+            const idPersonaje = evento.currentTarget.dataset.id; 
+            mostrarDetallePersonaje(idPersonaje); 
         });
     });
 };
 
-botonAccion.addEventListener("click", buscarRegistros);
+botonTraerTodos.addEventListener("click", obtenerRegistrosAPI);
+
+botonBusqueda.addEventListener("click", buscarRegistros);
 
 campoTextoBusqueda.addEventListener("keyup", (evento) => {
-    if (evento.key === "Enter") buscarRegistros();
+    if (evento.key === "Enter") {
+        buscarRegistros();
+    }
 });
 
 document.addEventListener("DOMContentLoaded", obtenerRegistrosAPI);
