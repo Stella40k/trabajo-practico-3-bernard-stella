@@ -1,4 +1,16 @@
 .card-img-top {
-    height: 200px;
-    object-fit: contain;
+  height: 350px;
+  object-fit: contain;
+}
+#contenedor.busqueda form {
+  margin-top: 20px;
+}
+
+#contenedor.busqueda input,
+#contenedor.busqueda button {
+  margin: 5px;
+}
+
+.btn-fixed-width {
+  width: 120px;
 }
