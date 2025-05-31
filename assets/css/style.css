@@ -14,3 +14,7 @@
 .btn-fixed-width {
   width: 120px;
 }
+
+#boton.todos {
+  width: 200px;
+}
