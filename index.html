@@ -30,8 +30,20 @@
       </nav>
     </header>
 
-     <button id="btn-traer-datos" class="btn btn-success">Traer Datos </button>
-
+    <div class="container text-center" id="contenedor.img"> <!--contenedor q tendra el banner, el buscador para los personajes y el btn q trae todos los personajes-->
+      <img src="/assets/img/portada_dragonball-removebg-preview.png" alt="logo dragon ball">
+      <h1>API Dragon Ball</h1>
+       <!--uso un div dentro para separar el buscador del banner para q en la estilizacion no sea tan molesto-->
+      <div class="container text-center" id="contenedor.busqueda">
+       <nav class="navbar navbar-light bg-light">
+          <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar en la API a..." aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="boton.buscar">Buscar</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="boton.todos">Traer a</button>
+          </form>
+       </nav>
+      </div>
+    </div>
        <!-- contenedor padre de las cartas  -->
       <div class="container text-center">
         <!-- cartas hijas -->
