@@ -35,27 +35,26 @@
       <h1>API Dragon Ball</h1>
        <!--uso un div dentro para separar el buscador del banner para q en la estilizacion no sea tan molesto-->
       <div class="container text-center" id="contenedor.busqueda" id="contenedor.buscador" >
-       <nav class="navbar navbar-light bg-light justify-content-center p-3" id="nav_buscador">
+       <navbar class="navbar navbar-light bg-light justify-content-center p-3" id="nav_buscador">
           <form class="d-flex align-items-center gap-2 w-100 justify-content-center">
             <input class="form-control" type="search" placeholder="Buscar en la API a..." aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0 btn-fixed-width" type="submit" id="boton.buscar">Buscar</button>
-            <button class="btn btn-outline-success my-2 my-sm-0 btn-fixed-width" type="submit" id="boton.todos">Todos</button>
           </form>
-       </nav>
+       </navbar>
       </div>
     </div>
 
     
        <!-- contenedor padre de las cartas  -->
-      <div class="container text-center">
+      <div class="container text-center mt-5">
         <!-- cartas hijas -->
-        <div class="col-3 pb-2 d-flex justify-content-center">
-          <div class="card" style="width: 18rem;">
+        <div class="col-3 pb-2 d-flex justify-content-center" id="contenedor.busqueda">
+          <div class="card" style="width: 20rem;">
             <img src="https://dragonball-api.com/characters/goku_normal.webp" class="card-img-top" alt="Imagen personaje">
             <div class="card-body">
               <h5 class="card-title-nombre">Goku</h5>
               <p class="card-text"> Sayayin - Male</p>
-              <a href="#" class="btn btn-primary">Ver mas</a>
+              <a href="" class="btn btn-primary">Ver mas</a>
             </div>
           </div>
         </div>
