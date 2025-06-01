@@ -76,7 +76,9 @@ const renderizarPersonajes = (personajes) => {
         console.error("Error: El elemento con ID 'contenedor-data' no fue encontrado en el DOM.");
         return; // Salir de la función si no hay contenedor.
     }
-     //٭ si el contenido de contPadre es null es pq ese id no existe 
+     //٭ si el contenido de contPadre es null es pq ese id no existe en la API
+}
+
 
 document.addEventListener("DOMContentLoaded", async () => {
     if (contenedorPadre) {
@@ -87,19 +89,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(dataPersonajes);
 })
 
-//٭ .addEventLister es para escuchar eventos q pasan en elementos especificos
-//٭  click es el evento q estamos escuchando cuando se hace click
-
-btnBuscar.addEventListener("click", async (event) => {
-    event.preventDefault() //٭ este codigo es para q no recargue el formulario
-
-  const data = await cargarDatos();
-  const dataPersonajes = data.items;
-
-  console.log(dataPersonajes);
 
   //٭ esta funcion sera lo q interactuara con todo el api y nos da la respuesta
-  dataPersonajes.forEach((personaje) => {
+dataPersonajes.forEach((personaje) => {
     contenedorPadre.innerHTML += `
             <div class="col-3 pb-2 d-flex justify-content-center" id="${personaje.id}">
               <div class="card" style="width: 20rem;">
@@ -110,9 +102,48 @@ btnBuscar.addEventListener("click", async (event) => {
                   <button class="btn btn-primary btn-ver-detalles">Ver más</button>                </div>
               </div>
             </div>
-        `;
-  });
+    `;
 });
+
+// parte de la funcion del boton y del click
+
+//٭ .addEventLister es para escuchar eventos q pasan en elementos especificos
+//٭  click es el evento q estamos escuchando cuando se hace click
+btnBuscar.addEventListener("click", async (event) => {
+    event.preventDefault() //٭ este codigo es para q no recargue el formulario
+
+  const data = await cargarDatos();
+  if(!data) return; //si cargaDatos retorna null (pq hubo error) se sale de la funcion
+
+  //la API devuelve los pj en un array en la propiedad de items
+  const dataPersonajes = data.items;
+
+  console.log(dataPersonajes);
+
+  renderizarPersonajes(dataPersonajes); //aca se llaman a las cartas para renderizar
+});
+
+//esta parte sera para el evento del btn ver mas
+
+//٭ para no tener q ponerle un evento listener a cada boton le añadi uno solo en el contenedorPadre
+//queda mejor pq hay muchos pjs y para cuando se añadan nuevas no sea tan engorroso
+if (contenedorPadre) {//٭ esta condicion evalua el valor de verdad con la id "contenedor-data"
+    contenedorPadre.addEventListener("click", (e) => {
+        //٭ e.target' es el elemento en el q se hizo clic
+        //٭ verificamos si el elemento clicado contiene la clase 'btn-ver-detalles'
+        if (e.target.classList.contains("btn-ver-detalles")) {
+            const cardPadre = e.target.closest(".col-3");
+
+            //٭ si se encuentra el div padre de la carta se hace esta funcion
+            //obtenemos el id del pj con su atributo data-id
+            if (cardPadre) {
+                const id = cardPadre.dataset.id;
+                //se llama a la funcion para mostrar los detalles del pj
+                verDetalles(id);
+            }
+        }
+    });
+}
 
 //٭ el addEvent es el q escucha el click 
 //٭  esta funcion 
@@ -125,3 +156,4 @@ contenedorPadre.addEventListener("click", (e) => {
     verDetalles(id);
   }
 });
+})
