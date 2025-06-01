@@ -1,59 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=git status:, initial-scale=1.0" />
+    <!--este es el link para bs-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+      crossorigin="anonymous"
+    />
+    <!--link para el estilo, enlace cpn el css-->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Trabajo Practico III</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=git status:, initial-scale=1.0">
-  <!--este es el link para bs-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-<!--link para el estilo, enlace cpn el css-->
-    <link rel="stylesheet" href="assets/css/style.css">
-  <title>Trabajo Practico III</title>
-</head>
+  <body>
+    <div id="root">
+      <header>
+        <nav id="nav_navegador">
+          <ul class="nav nav-underline">
+            <!--las clases indican como sean lo q sean-->
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Notas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">Apoyanos!</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-<body>
-  <div id="root">
-    <header>
-      <nav id="nav_navegador">
-        <ul class="nav nav-underline"> <!--las clases indican como sean lo q sean-->
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Notas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Apoyanos!</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <div class="container text-center" id="contenedor.img"> <!--contenedor q tendra el banner, el buscador para los personajes y el btn q trae todos los personajes-->
-      <img src="/assets/img/portada_dragonball-removebg-preview.png" alt="logo dragon ball">
-      <h1>API Dragon Ball</h1>
-       <!--uso un div dentro para separar el buscador del banner para q en la estilizacion no sea tan molesto-->
-      <div class="container text-center" id="contenedor.busqueda" >
-       <navbar class="navbar navbar-light bg-light justify-content-center p-3" id="nav_buscador">
-          <form class="d-flex align-items-center gap-2 w-100 justify-content-center">
-            <input class="form-control" type="search" placeholder="Buscar en la API a..." aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0 btn-fixed-width" type="submit" id="boton.buscar">Buscar</button>
-          </form>
-       </navbar>
+      <div class="container text-center" id="contenedor.img">
+        <!--contenedor q tendra el banner, el buscador para los personajes y el btn q trae todos los personajes-->
+        <img
+          src="/assets/img/portada_dragonball-removebg-preview.png"
+          alt="logo dragon ball"
+        />
+        <h1>API Dragon Ball</h1>
+        <!--uso un div dentro para separar el buscador del banner para q en la estilizacion no sea tan molesto-->
+        <div class="container text-center" id="contenedor.busqueda">
+          <navbar
+            class="navbar navbar-light bg-light justify-content-center p-3"
+            id="nav_buscador"
+          >
+            <form
+              class="d-flex align-items-center gap-2 w-100 justify-content-center"
+            >
+              <!--se agrego la id input-buscador para leer lo q pone el usuario-->
+              <input
+                class="form-control"
+                type="search"
+                placeholder="Buscar en la API a..."
+                aria-label="Search"
+                id="input-buscador"
+              />
+              <button
+                class="btn btn-outline-success my-2 my-sm-0 btn-fixed-width"
+                type="submit"
+                id="boton.buscar"
+              >
+                Buscar
+              </button>
+            </form>
+          </navbar>
+        </div>
       </div>
+
+      <main class="container text-center mt-5" id="contenedor-data"></main>
     </div>
 
-    <div>
-      <main class="container text-center mt-5" id="contenedor-data"> 
-      </main>
-    </div>
-
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-    crossorigin="anonymous"></script>
-  <script src="/assets/js/script.js"> </script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/assets/js/script.js"></script>
+  </body>
 </html>
